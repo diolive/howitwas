@@ -48,6 +48,6 @@
   ],
   "scripts": {
     "postrestore": [ "npm install", "bower install", "gulp clean" ],
-    "prepublish": [ "npm install", "bower install", "gulp clean", "gulp copy" ]
+    "prepublish": [ "npm install", "bower install", "gulp clean", "gulp copy", "bump:patch" ]
   }
 }

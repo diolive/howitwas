@@ -1,4 +1,4 @@
-﻿/// <binding AfterBuild='clean, copy, bump:patch' Clean='clean' ProjectOpened='sass:watch, ts:watch' />
+﻿/// <binding AfterBuild='clean, copy' Clean='clean' ProjectOpened='sass:watch, ts:watch' />
 
 "use scrict";
 
@@ -119,10 +119,10 @@ gulp.task('ts:watch', ['ts'], function () {
 gulp.task('bump:patch', function () {
   git.revParse({ args: '--short HEAD' }, function (err, hash) {
     if (!err) {
-      gulp.src('config.json')
+      gulp.src('appsettings.json')
           .pipe(bump([
-            { version: hash, key: 'AppSettings.GitHash' },
-            { type: 'patch', key: 'AppSettings.Version' }
+            { version: hash, key: 'Data.GitHash' },
+            { type: 'patch', key: 'Data.Version' }
           ]))
           .pipe(gulp.dest('./'));
     }
@@ -132,10 +132,10 @@ gulp.task('bump:patch', function () {
 gulp.task('bump:minor', function () {
   git.revParse({ args: '--short HEAD' }, function (err, hash) {
     if (!err) {
-      gulp.src('config.json')
+      gulp.src('appsettings.json')
           .pipe(bump([
-            { version: hash, key: 'AppSettings.GitHash' },
-            { type: 'minor', key: 'AppSettings.Version' }
+            { version: hash, key: 'Data.GitHash' },
+            { type: 'minor', key: 'Data.Version' }
           ]))
           .pipe(gulp.dest('./'));
     }
@@ -145,9 +145,9 @@ gulp.task('bump:minor', function () {
 gulp.task('bump:gitonly', function () {
   git.revParse({ args: '--short HEAD' }, function (err, hash) {
     if (!err) {
-      gulp.src('config.json')
+      gulp.src('appsettings.json')
           .pipe(bump(
-            { version: hash, key: 'AppSettings.GitHash' }
+            { version: hash, key: 'Data.GitHash' }
           ))
           .pipe(gulp.dest('./'));
     }
