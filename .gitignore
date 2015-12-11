@@ -194,3 +194,8 @@ FakesAssemblies/
 
 # Visual Studio 6 workspace options file
 *.opt
+
+# Post-build styles and scripts
+src/HowItWas.Web/wwwroot/lib/
+src/HowItWas.Web/wwwroot/css/
+src/HowItWas.Web/wwwroot/js/
