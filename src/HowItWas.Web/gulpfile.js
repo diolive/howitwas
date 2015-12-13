@@ -22,7 +22,9 @@ var root = './wwwroot/',
       js: root + 'js',
       lib: root + 'lib',
       sass: './SASS',
-      ts: './TypeScript'
+      ts: './TypeScript',
+
+      settings: 'appsettings.json'
     };
 
 paths.cssFiles = paths.css + '/**/*.css';
@@ -33,7 +35,6 @@ paths.tsFiles = paths.ts + '/**/*.ts';
 paths.ts_d = paths.ts + '/d';
 paths.ts_global = paths.ts + '/global';
 paths.ts_auth = paths.ts + '/auth';
-paths.ts_account = paths.ts + '/account';
 
 paths.dts = paths.ts_d + '/*.d.ts';
 
@@ -70,18 +71,7 @@ gulp.task('ts:auth', function () {
     .pipe(gulp.dest('.'));
 });
 
-gulp.task('ts:account', function () {
-  gulp.src([paths.dts,
-            paths.ts_account + '/dateTimePicker.ts',
-            paths.ts_account + '/modals.ts',
-            paths.ts_account + '/main.ts'])
-    .pipe(typescript())
-    .pipe(concat(paths.js + '/account.js'))
-    .pipe(uglify())
-    .pipe(gulp.dest('.'));
-});
-
-gulp.task('ts', ['ts:global', 'ts:auth', 'ts:account']);
+gulp.task('ts', ['ts:global', 'ts:auth']);
 
 gulp.task('sass', function () {
   gulp.src([paths.sassFiles])
@@ -119,7 +109,7 @@ gulp.task('ts:watch', ['ts'], function () {
 gulp.task('bump:patch', function () {
   git.revParse({ args: '--short HEAD' }, function (err, hash) {
     if (!err) {
-      gulp.src('appsettings.json')
+      gulp.src(paths.settings)
           .pipe(bump([
             { version: hash, key: 'Data.GitHash' },
             { type: 'patch', key: 'Data.Version' }
@@ -132,7 +122,7 @@ gulp.task('bump:patch', function () {
 gulp.task('bump:minor', function () {
   git.revParse({ args: '--short HEAD' }, function (err, hash) {
     if (!err) {
-      gulp.src('appsettings.json')
+      gulp.src(paths.settings)
           .pipe(bump([
             { version: hash, key: 'Data.GitHash' },
             { type: 'minor', key: 'Data.Version' }
@@ -145,7 +135,7 @@ gulp.task('bump:minor', function () {
 gulp.task('bump:gitonly', function () {
   git.revParse({ args: '--short HEAD' }, function (err, hash) {
     if (!err) {
-      gulp.src('appsettings.json')
+      gulp.src(paths.settings)
           .pipe(bump(
             { version: hash, key: 'Data.GitHash' }
           ))
