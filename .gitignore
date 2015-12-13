@@ -199,3 +199,4 @@ FakesAssemblies/
 src/HowItWas.Web/wwwroot/lib/
 src/HowItWas.Web/wwwroot/css/
 src/HowItWas.Web/wwwroot/js/
+src/HowItWas.Web/TypeScript/**/*.js
