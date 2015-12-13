@@ -1,9 +1,9 @@
 ﻿@model ExternalLoginConfirmationViewModel
 @{
-    ViewData["Title"] = "Register";
+    ViewData["PageTitle"] = "Register";
 }
 
-<h2>@ViewData["Title"].</h2>
+<h2>@ViewData["PageTitle"].</h2>
 <h3>Associate your @ViewData["LoginProvider"] account.</h3>
 
 <form asp-controller="@nameof(Account)" asp-action="ExternalLoginConfirmation" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="form-horizontal" role="form">
