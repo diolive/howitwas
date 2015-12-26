@@ -8,9 +8,10 @@ using HowItWas.Web.Models;
 namespace HowItWas.Web.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20151226065151_AddParticipatorsAndFeedbacks")]
+    partial class AddParticipatorsAndFeedbacks
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "7.0.0-rc1-16348")
